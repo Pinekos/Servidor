@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Contactos</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Lista de Contactos</h1>
+    <ul id="contact-list"></ul>
+
+    <script>
+        $.ajax({
+            url: 'verjson.php',
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var contactList = $('#contact-list');
+                data.forEach(function (contact) {
+                    var listItem = $('<li>' + contact.nombre + ': ' + contact.email + '</li>');
+                    contactList.append(listItem);
+                });
+            },
+            error: function () {
+                alert('Error al cargar los datos de contactos.');
+            }
+        });
+    </script>
+</body>
+</html>
