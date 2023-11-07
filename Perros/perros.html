@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Random Dog Image</title>
+    <style>
+        img {
+            max-height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Imagen de Perro Aleatorio</h1>
+    <img id="dogImage" src="" alt="Perro Aleatorio">
+    <br>
+    <button onclick="fetchDog()">Siguiente</button>
+
+    <script>
+        function fetchDog() {
+            fetch('https://dog.ceo/api/breeds/image/random') // fetch para recoger datos en bruto de https y then para manejarlos
+                .then(response => response.json()) // de dato bruto a objeto json
+                .then(data => {
+                    document.getElementById('dogImage').src = data.message;
+                })
+        }
+        fetchDog();
+
+    </script>
+</body>
+
+</html>
